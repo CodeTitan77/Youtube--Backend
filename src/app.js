@@ -25,4 +25,4 @@ import userRouter from'./routes/user.routes.js'
 
 
 
-export default app;
+export {app}

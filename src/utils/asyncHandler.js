@@ -8,7 +8,7 @@
 
 
 
-
+  export {asyncHandler}
 
 
 
@@ -29,6 +29,3 @@
 //     }
 
 // }
-
-
-export default asyncHandler
