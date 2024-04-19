@@ -44,7 +44,11 @@ const registerUser = asyncHandler( async (req, res) => {
     // multer giving access of these video or image files like req.body is given by express
 
     const avatarLocalPath=req.files?.avatar[0]?.path;
-    const coverImageLocalPath= req.files?.coverImage[0]?.path;
+let coverImageLocalPath;
+    // console.log(req.files);
+    if(req.files && Array.isArray(req.files.coverImage)&& req.files.coverImage.length>0){
+        const coverImageLocalPath= req.files?.coverImage[0]?.path;
+    }
     if(!avatarLocalPath){
         throw new ApiError(400,"Avatar file required ")
 
