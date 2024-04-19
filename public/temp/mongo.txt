@@ -1,0 +1,5 @@
+mongodb+srv://himanshutrivedi521:<password>@cluster0.kdf6p3d.mongodb.net/
+
+
+
+GajrZYSZZiOTBrdC

@@ -21,7 +21,7 @@ const userSchema= new Schema({
         trim:true,// whitespace are removed from db
 
     },
-    fullname:{
+    fullName:{
         type:String ,
         required:true,
         trim : true,

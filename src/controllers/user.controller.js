@@ -16,8 +16,8 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 
 const registerUser = asyncHandler( async (req, res) => {
-   const {fullname,email,username,password} = req.body;
-   if(fullname=== ""){
+   const {fullName,email,username,password} = req.body;
+   if(fullName=== ""){
     throw new ApiError(500,"fullname is req")
    }
    if(email=== ""){
@@ -29,12 +29,12 @@ const registerUser = asyncHandler( async (req, res) => {
    if(password=== ""){
     throw new ApiError(500,"password is req")
    }
-    // if([fullname,email,username,password].some(
-    //     (field)=>
-    //  field?.trim()==="" )){
-    //     throw new ApiError(500,"all fields are compulsory")
-    //   }
-    const existedUser= User.findOne({
+// if (
+//     [fullName, email, username, password].some((field) => field?.trim() === "")
+// ) {
+//     throw new ApiError(400, "All fields are required")
+// }
+    const existedUser= await User.findOne({
         $or: [{username},{email}]  // or operator
         
     })
@@ -55,7 +55,7 @@ const registerUser = asyncHandler( async (req, res) => {
         throw new ApiError(400,"Avatar file required ")
     }
    const user=  await User.create({
-        fullname,
+        fullName,
         avatar: avatar.url,
         coverImage: coverImage?.url || "",
         password,
