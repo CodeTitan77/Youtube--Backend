@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { 
     
+    loginUser,
+    logoutUser,
     registerUser, 
     
 } from "../controllers/user.controller.js";
 import {upload} from "../middlewares/multer.middleware.js"
+import { verifyJwt } from './../middlewares/auth.middleware.js';
 
 
 
@@ -24,6 +27,9 @@ router.route("/register").post(
     registerUser
     )
 
+ router.route("/login").post(loginUser)
 
+ //secured routes
+ router.route("/logout").post(verifyJwt,logoutUser) // use comma to seperate middle wares
 
 export default router

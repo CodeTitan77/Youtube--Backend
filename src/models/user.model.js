@@ -67,8 +67,9 @@ userSchema.pre("save",async function(next){
 // calling the fuunction as callback not using arrow function because arrow 
 // function does not have refrence of this and here refrence is very imp 
 
-userSchema.methods.isPasswordCorrect = async function(passord){
-   return await  bcrypt.compare(password,this.password)
+userSchema.methods.isPasswordCorrect = async function(password){
+  
+    return await bcrypt.compare(password, this.password)
 }
 
 userSchema.methods.generateAccessToken = function(){
