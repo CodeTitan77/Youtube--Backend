@@ -106,6 +106,7 @@ const registerUser = asyncHandler( async (req, res) => {
 
 } )
 
+
  const loginUser = asyncHandler(async(req,res)=>{
     // take data from req.body
     // check if username or email already exist in the data base
@@ -125,7 +126,7 @@ const registerUser = asyncHandler( async (req, res) => {
         throw new ApiError(404,"User does not exist")
      }
       const isPasswordValid = await user.isPasswordCorrect(password);
-      console.log(isPasswordValid);
+      
       if(!isPasswordValid){
         throw new ApiError(401,"Invalid password credentials")
       }
@@ -137,15 +138,14 @@ const registerUser = asyncHandler( async (req, res) => {
         secure : true ,
      }// only modifiable by server 
      return res
-     .status(200).
-     cookie("accessToken",accessToken,options)
+     .status(200)
+     .cookie("accessToken",accessToken,options)
     .cookie("refreshToken",refreshToken,options)
     .json(
         new ApiResponse(
             200,
             {
-                user : loggedInUser,accessToken,
-                refreshToken
+                user : loggedInUser,accessToken,refreshToken
             },
             "User logged in successfully "
         )
@@ -179,6 +179,13 @@ const registerUser = asyncHandler( async (req, res) => {
   .clearCookie("refreshToken",options)
   .json(new ApiResponse(200, "user logged out"))
  })
+
+
+
+
+
+
+
 
 
 export  {
